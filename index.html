@@ -171,20 +171,20 @@
         { id: 'p7', type: 'pointed', color: '#D84A7C', colorLight: '#FFE8F0', size: 55, rotation: -30, finalPercent: { x: 70, y: 8 } },
         { id: 'p8', type: 'small', color: '#B83280', colorLight: '#FCE4F2', size: 40, rotation: 45, finalPercent: { x: 88, y: 62 } },
         { id: 'p9', type: 'wide', color: '#E05C8A', colorLight: '#FFE9F2', size: 65, rotation: 20, finalPercent: { x: 92, y: 18 } },
-        { id: 'p10', type: 'star', color: '#C73975', colorLight: '#FFD9E8', size: 55, rotation: -15, finalPercent: { x: 62, y: 88 } },
+        { id: 'p10', type: 'star', color: '#C73975', colorLight: '#FFD9E8', size: 55, rotation: -15, finalPercent: { x: 62, y: 35 } },
         { id: 'p11', type: 'oval', color: '#D94682', colorLight: '#FFDFF0', size: 50, rotation: 30, finalPercent: { x: 78, y: 45 } },
         { id: 'p12', type: 'wide', color: '#F59842', colorLight: '#FFF5E6', size: 60, rotation: -25, finalPercent: { x: 95, y: 75 } },
-        // Leaves - mixed throughout the page
+        // Leaves - CAN go under the text (lower z-index), positioned around and under text
         { id: 'l1', type: 'leaf', color: '#22B573', size: 100, rotation: -15, finalPercent: { x: 8, y: 55 } },
         { id: 'l2', type: 'roundleaf', color: '#2ECC71', size: 70, rotation: 20, finalPercent: { x: 15, y: 72 } },
-        { id: 'l3', type: 'leaf', color: '#27AE60', size: 80, rotation: 10, finalPercent: { x: 28, y: 25 } },
+        { id: 'l3', type: 'leaf', color: '#27AE60', size: 80, rotation: 10, finalPercent: { x: 28, y: 65 } },
         { id: 'l4', type: 'roundleaf', color: '#22B573', size: 55, rotation: -25, finalPercent: { x: 92, y: 52 } },
         { id: 'l5', type: 'leaf', color: '#2ECC71', size: 65, rotation: 35, finalPercent: { x: 5, y: 35 } },
         { id: 'l6', type: 'roundleaf', color: '#27AE60', size: 50, rotation: -40, finalPercent: { x: 18, y: 85 } },
-        { id: 'l7', type: 'leaf', color: '#1E9956', size: 75, rotation: 5, finalPercent: { x: 35, y: 65 } },
-        { id: 'l8', type: 'roundleaf', color: '#26A65B', size: 60, rotation: -20, finalPercent: { x: 12, y: 15 } },
-        { id: 'l9', type: 'leaf', color: '#2AB561', size: 70, rotation: 25, finalPercent: { x: 45, y: 45 } },
-        { id: 'l10', type: 'roundleaf', color: '#22B573', size: 55, rotation: 15, finalPercent: { x: 60, y: 78 } },
+        { id: 'l7', type: 'leaf', color: '#1E9956', size: 75, rotation: 5, finalPercent: { x: 35, y: 45 } },
+        { id: 'l8', type: 'roundleaf', color: '#26A65B', size: 60, rotation: -20, finalPercent: { x: 12, y: 22 } },
+        { id: 'l9', type: 'leaf', color: '#2AB561', size: 70, rotation: 25, finalPercent: { x: 25, y: 38 } },
+        { id: 'l10', type: 'roundleaf', color: '#22B573', size: 55, rotation: 15, finalPercent: { x: 40, y: 78 } },
       ];
 
       const projects = [
@@ -338,20 +338,20 @@
         const responsiveSize = heroSize.width < 640 ? piece.size * 0.6 : heroSize.width < 1024 ? piece.size * 0.8 : piece.size;
         
         const style = {
-          left: isComplete || isDraggingThis ? pos.x : '50%',
-          top: isComplete || isDraggingThis ? pos.y : '-150px',
-          zIndex: isDraggingThis ? 100 : (isLeaf ? 5 : 30),
+          left: isComplete || isDraggingThis ? pos.x : finalPos.x,
+          top: isComplete || isDraggingThis ? pos.y : finalPos.y,
+          zIndex: isDraggingThis ? 100 : (isLeaf ? 20 : 30),
           cursor: isDraggingThis ? 'grabbing' : 'grab',
           animation: !isComplete && !isDraggingThis ? `fall 2.8s ease-out ${0.1 + index * 0.2}s forwards` : 'none',
-          pointerEvents: 'auto',
-          opacity: isComplete || isDraggingThis ? 1 : 0,
         };
         const props = { size: responsiveSize, rotation: rot, style, onMouseDown: (e) => handleMouseDown(e, piece.id), onDoubleClick: (e) => handleDoubleClick(e, piece.id, piece) };
         
         // Add touch handlers
         const touchProps = {
           onTouchStart: (e) => handleMouseDown(e, piece.id),
-          onTouchEnd: (e) => handleTouchEnd(e, piece.id, piece),
+          onTouchEnd: (e) => {
+            if (!dragging) handleDoubleClick(e, piece.id, piece);
+          }
         };
         
         switch (piece.type) {
@@ -484,11 +484,11 @@
           <section ref={heroRef} className="relative min-h-screen flex items-center px-4 sm:px-8 md:px-16 overflow-hidden">
             {pieces.filter(p => !removedPetals[p.id]).map((p, i) => renderPiece(p, i))}
             {flowers.map(f => renderFlower(f))}
-            <div className="relative z-10 max-w-xl pt-16 sm:pt-20" style={{ pointerEvents: 'none' }}>
+            <div className="relative z-10 max-w-xl pt-16 sm:pt-20">
               <p className="text-stone-400 text-xs sm:text-sm mb-3 sm:mb-4">Hi, I'm Juju</p>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-stone-800 leading-tight tracking-tight mb-4 sm:mb-6">Product Designer<br /><span className="text-stone-400">you can count on</span></h1>
               <p className="text-stone-500 text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 max-w-md">I blend design thinking with technical fluency to ship products users love. Currently designing at Magnuson Ventures.</p>
-              <a href="mailto:fu.shih@northeastern.edu" className="inline-flex items-center gap-2 bg-stone-800 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm hover:bg-[#D63B8E] transition-colors" style={{ pointerEvents: 'auto' }}>Get in touch</a>
+              <a href="mailto:fu.shih@northeastern.edu" className="inline-flex items-center gap-2 bg-stone-800 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm hover:bg-[#D63B8E] transition-colors">Get in touch</a>
             </div>
             <div className="absolute bottom-6 sm:bottom-8 left-4 sm:left-8 md:left-16 flex items-center gap-2 text-stone-300 text-xs sm:text-sm z-10">
               <svg className="w-3 h-3 sm:w-4 sm:h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
