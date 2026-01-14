@@ -31,10 +31,10 @@
   <script type="text/babel">
     const { useState, useRef, useEffect } = React;
 
-    function HeartPetal({ color, colorLight, size, rotation, style, onMouseDown, onDoubleClick }) {
+    function HeartPetal({ color, colorLight, size, rotation, style, onMouseDown, onDoubleClick, onTouchStart, onTouchEnd }) {
       const [hovered, setHovered] = useState(false);
       return (
-        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
+        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
           <svg viewBox="0 0 60 66" style={{ width: size, height: size * 1.1, transform: `rotate(${rotation}deg)`, transition: 'transform 0.3s ease', animation: hovered ? 'wiggle 0.4s ease-in-out' : 'none' }}>
             <defs><radialGradient id={`hg-${color.replace('#','')}`} cx="50%" cy="80%" r="70%"><stop offset="0%" stopColor={colorLight} /><stop offset="100%" stopColor={color} /></radialGradient></defs>
             <path d="M30 62 Q20 58 12 48 Q4 38 4 28 Q4 18 12 12 Q20 6 30 10 Q40 6 48 12 Q56 18 56 28 Q56 38 48 48 Q40 58 30 62Z" fill={`url(#hg-${color.replace('#','')})`} />
@@ -43,10 +43,10 @@
       );
     }
 
-    function PointedPetal({ color, colorLight, size, rotation, style, onMouseDown, onDoubleClick }) {
+    function PointedPetal({ color, colorLight, size, rotation, style, onMouseDown, onDoubleClick, onTouchStart, onTouchEnd }) {
       const [hovered, setHovered] = useState(false);
       return (
-        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
+        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
           <svg viewBox="0 0 42 96" style={{ width: size * 0.7, height: size * 1.6, transform: `rotate(${rotation}deg)`, transition: 'transform 0.3s ease', animation: hovered ? 'wiggle 0.4s ease-in-out' : 'none' }}>
             <defs><linearGradient id={`pg-${color.replace('#','')}`} x1="50%" y1="100%" x2="50%" y2="0%"><stop offset="0%" stopColor={colorLight} /><stop offset="60%" stopColor={color} /></linearGradient></defs>
             <path d="M21 2 Q28 15 34 30 Q40 45 40 60 Q40 75 34 84 Q28 92 21 94 Q14 92 8 84 Q2 75 2 60 Q2 45 8 30 Q14 15 21 2Z" fill={`url(#pg-${color.replace('#','')})`} />
@@ -55,10 +55,10 @@
       );
     }
 
-    function RoundPetal({ color, colorLight, size, rotation, style, onMouseDown, onDoubleClick }) {
+    function RoundPetal({ color, colorLight, size, rotation, style, onMouseDown, onDoubleClick, onTouchStart, onTouchEnd }) {
       const [hovered, setHovered] = useState(false);
       return (
-        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
+        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
           <svg viewBox="0 0 60 63" style={{ width: size, height: size * 1.05, transform: `rotate(${rotation}deg)`, transition: 'transform 0.3s ease', animation: hovered ? 'wiggle 0.4s ease-in-out' : 'none' }}>
             <defs><radialGradient id={`rg-${color.replace('#','')}`} cx="50%" cy="90%" r="80%"><stop offset="0%" stopColor={colorLight} /><stop offset="100%" stopColor={color} /></radialGradient></defs>
             <path d="M30 60 Q18 58 10 48 Q2 38 2 28 Q2 14 16 6 Q30 0 44 6 Q58 14 58 28 Q58 38 50 48 Q42 58 30 60Z" fill={`url(#rg-${color.replace('#','')})`} />
@@ -67,10 +67,10 @@
       );
     }
 
-    function SmallPetal({ color, colorLight, size, rotation, style, onMouseDown, onDoubleClick }) {
+    function SmallPetal({ color, colorLight, size, rotation, style, onMouseDown, onDoubleClick, onTouchStart, onTouchEnd }) {
       const [hovered, setHovered] = useState(false);
       return (
-        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
+        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
           <svg viewBox="0 0 36 60" style={{ width: size * 0.6, height: size, transform: `rotate(${rotation}deg)`, transition: 'transform 0.3s ease', animation: hovered ? 'wiggle 0.4s ease-in-out' : 'none' }}>
             <defs><radialGradient id={`sg-${color.replace('#','')}-${size}`} cx="50%" cy="70%" r="60%"><stop offset="0%" stopColor={colorLight} /><stop offset="100%" stopColor={color} /></radialGradient></defs>
             <path d="M18 56 Q8 50 4 38 Q0 26 6 14 Q12 4 18 2 Q24 4 30 14 Q36 26 32 38 Q28 50 18 56Z" fill={`url(#sg-${color.replace('#','')}-${size})`} />
@@ -79,10 +79,10 @@
       );
     }
 
-    function WidePetal({ color, colorLight, size, rotation, style, onMouseDown, onDoubleClick }) {
+    function WidePetal({ color, colorLight, size, rotation, style, onMouseDown, onDoubleClick, onTouchStart, onTouchEnd }) {
       const [hovered, setHovered] = useState(false);
       return (
-        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
+        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
           <svg viewBox="0 0 80 50" style={{ width: size * 1.3, height: size * 0.8, transform: `rotate(${rotation}deg)`, transition: 'transform 0.3s ease', animation: hovered ? 'wiggle 0.4s ease-in-out' : 'none' }}>
             <defs><radialGradient id={`wg-${color.replace('#','')}-${size}`} cx="50%" cy="85%" r="70%"><stop offset="0%" stopColor={colorLight} /><stop offset="100%" stopColor={color} /></radialGradient></defs>
             <path d="M40 46 Q25 44 14 36 Q3 28 2 18 Q2 8 14 3 Q26 0 40 2 Q54 0 66 3 Q78 8 78 18 Q77 28 66 36 Q55 44 40 46Z" fill={`url(#wg-${color.replace('#','')}-${size})`} />
@@ -91,10 +91,10 @@
       );
     }
 
-    function StarPetal({ color, colorLight, size, rotation, style, onMouseDown, onDoubleClick }) {
+    function StarPetal({ color, colorLight, size, rotation, style, onMouseDown, onDoubleClick, onTouchStart, onTouchEnd }) {
       const [hovered, setHovered] = useState(false);
       return (
-        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
+        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
           <svg viewBox="0 0 50 80" style={{ width: size * 0.8, height: size * 1.3, transform: `rotate(${rotation}deg)`, transition: 'transform 0.3s ease', animation: hovered ? 'wiggle 0.4s ease-in-out' : 'none' }}>
             <defs><linearGradient id={`stg-${color.replace('#','')}-${size}`} x1="50%" y1="100%" x2="50%" y2="0%"><stop offset="0%" stopColor={colorLight} /><stop offset="70%" stopColor={color} /></linearGradient></defs>
             <path d="M25 4 L30 25 L48 30 L30 35 L25 56 L20 35 L2 30 L20 25 Z M25 56 Q20 62 16 70 Q12 76 25 78 Q38 76 34 70 Q30 62 25 56 Z" fill={`url(#stg-${color.replace('#','')}-${size})`} />
@@ -103,10 +103,10 @@
       );
     }
 
-    function OvalPetal({ color, colorLight, size, rotation, style, onMouseDown, onDoubleClick }) {
+    function OvalPetal({ color, colorLight, size, rotation, style, onMouseDown, onDoubleClick, onTouchStart, onTouchEnd }) {
       const [hovered, setHovered] = useState(false);
       return (
-        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
+        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
           <svg viewBox="0 0 48 72" style={{ width: size * 0.65, height: size * 1.1, transform: `rotate(${rotation}deg)`, transition: 'transform 0.3s ease', animation: hovered ? 'wiggle 0.4s ease-in-out' : 'none' }}>
             <defs><radialGradient id={`og-${color.replace('#','')}-${size}`} cx="50%" cy="75%" r="65%"><stop offset="0%" stopColor={colorLight} /><stop offset="100%" stopColor={color} /></radialGradient></defs>
             <ellipse cx="24" cy="38" rx="20" ry="32" fill={`url(#og-${color.replace('#','')}-${size})`} />
@@ -115,10 +115,10 @@
       );
     }
 
-    function Leaf({ color, size, rotation, style, onMouseDown, onDoubleClick }) {
+    function Leaf({ color, size, rotation, style, onMouseDown, onDoubleClick, onTouchStart, onTouchEnd }) {
       const [hovered, setHovered] = useState(false);
       return (
-        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
+        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
           <svg viewBox="0 0 100 45" style={{ width: size, height: size * 0.45, transform: `rotate(${rotation}deg)`, transition: 'transform 0.3s ease', animation: hovered ? 'wiggle 0.4s ease-in-out' : 'none' }}>
             <defs><linearGradient id={`lg-${size}`} x1="0%" y1="50%" x2="100%" y2="50%"><stop offset="0%" stopColor="#1B8A4E" /><stop offset="50%" stopColor={color} /><stop offset="100%" stopColor="#1B8A4E" /></linearGradient></defs>
             <path d="M2 22 Q15 8 30 5 Q50 2 70 5 Q85 8 98 22 Q85 36 70 40 Q50 43 30 40 Q15 36 2 22Z" fill={`url(#lg-${size})`} />
@@ -132,10 +132,10 @@
       );
     }
 
-    function RoundLeaf({ color, size, rotation, style, onMouseDown, onDoubleClick }) {
+    function RoundLeaf({ color, size, rotation, style, onMouseDown, onDoubleClick, onTouchStart, onTouchEnd }) {
       const [hovered, setHovered] = useState(false);
       return (
-        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
+        <div style={{...style, transition: 'transform 0.3s ease'}} onMouseDown={onMouseDown} onDoubleClick={onDoubleClick} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="absolute select-none touch-none">
           <svg viewBox="0 0 70 49" style={{ width: size, height: size * 0.7, transform: `rotate(${rotation}deg)`, transition: 'transform 0.3s ease', animation: hovered ? 'wiggle 0.4s ease-in-out' : 'none' }}>
             <defs><radialGradient id={`rlg-${size}`} cx="50%" cy="50%" r="60%"><stop offset="0%" stopColor={color} /><stop offset="100%" stopColor="#1B8A4E" /></radialGradient></defs>
             <path d="M4 24 Q4 10 20 5 Q35 2 50 5 Q66 10 66 24 Q66 38 50 44 Q35 47 20 44 Q4 38 4 24Z" fill={`url(#rlg-${size})`} />
@@ -161,22 +161,22 @@
       const [heroSize, setHeroSize] = useState({ width: 0, height: 0 });
 
       const pieces = [
-        // Petals - spread across the screen using percentages
-        { id: 'p1', type: 'heart', color: '#C41E6A', colorLight: '#FFE4EC', size: 75, rotation: -20, finalPercent: { x: 5, y: 15 } },
+        // Petals - avoiding the text area (left side roughly 0-40% x, 25-65% y)
+        { id: 'p1', type: 'heart', color: '#C41E6A', colorLight: '#FFE4EC', size: 75, rotation: -20, finalPercent: { x: 50, y: 15 } },
         { id: 'p2', type: 'pointed', color: '#E84A1B', colorLight: '#FFCC4D', size: 70, rotation: 15, finalPercent: { x: 75, y: 10 } },
         { id: 'p3', type: 'round', color: '#D63B8E', colorLight: '#FFEEF4', size: 60, rotation: 25, finalPercent: { x: 60, y: 55 } },
         { id: 'p4', type: 'heart', color: '#8B2D87', colorLight: '#F5E6F5', size: 55, rotation: -10, finalPercent: { x: 85, y: 30 } },
-        { id: 'p5', type: 'small', color: '#E85A8F', colorLight: '#FFF0F5', size: 50, rotation: 35, finalPercent: { x: 20, y: 70 } },
+        { id: 'p5', type: 'small', color: '#E85A8F', colorLight: '#FFF0F5', size: 50, rotation: 35, finalPercent: { x: 45, y: 8 } },
         { id: 'p6', type: 'round', color: '#F5C842', colorLight: '#FFFDE7', size: 80, rotation: -5, finalPercent: { x: 80, y: 65 } },
-        { id: 'p7', type: 'pointed', color: '#D84A7C', colorLight: '#FFE8F0', size: 55, rotation: -30, finalPercent: { x: 45, y: 8 } },
+        { id: 'p7', type: 'pointed', color: '#D84A7C', colorLight: '#FFE8F0', size: 55, rotation: -30, finalPercent: { x: 68, y: 8 } },
         { id: 'p8', type: 'small', color: '#B83280', colorLight: '#FCE4F2', size: 40, rotation: 45, finalPercent: { x: 65, y: 80 } },
-        { id: 'p9', type: 'wide', color: '#E05C8A', colorLight: '#FFE9F2', size: 65, rotation: 20, finalPercent: { x: 35, y: 45 } },
-        { id: 'p10', type: 'star', color: '#C73975', colorLight: '#FFD9E8', size: 55, rotation: -15, finalPercent: { x: 10, y: 40 } },
+        { id: 'p9', type: 'wide', color: '#E05C8A', colorLight: '#FFE9F2', size: 65, rotation: 20, finalPercent: { x: 50, y: 72 } },
+        { id: 'p10', type: 'star', color: '#C73975', colorLight: '#FFD9E8', size: 55, rotation: -15, finalPercent: { x: 92, y: 45 } },
         { id: 'p11', type: 'oval', color: '#D94682', colorLight: '#FFDFF0', size: 50, rotation: 30, finalPercent: { x: 55, y: 30 } },
         { id: 'p12', type: 'wide', color: '#F59842', colorLight: '#FFF5E6', size: 60, rotation: -25, finalPercent: { x: 90, y: 75 } },
-        // Leaves - spread across
+        // Leaves - can be behind/under text area (lower z-index)
         { id: 'l1', type: 'leaf', color: '#22B573', size: 100, rotation: -15, finalPercent: { x: 3, y: 55 } },
-        { id: 'l2', type: 'roundleaf', color: '#2ECC71', size: 70, rotation: 20, finalPercent: { x: 50, y: 75 } },
+        { id: 'l2', type: 'roundleaf', color: '#2ECC71', size: 70, rotation: 20, finalPercent: { x: 48, y: 75 } },
         { id: 'l3', type: 'leaf', color: '#27AE60', size: 80, rotation: 10, finalPercent: { x: 25, y: 35 } },
         { id: 'l4', type: 'roundleaf', color: '#22B573', size: 55, rotation: -25, finalPercent: { x: 90, y: 50 } },
         { id: 'l5', type: 'leaf', color: '#2ECC71', size: 65, rotation: 35, finalPercent: { x: 70, y: 25 } },
@@ -468,7 +468,7 @@
           <section ref={heroRef} className="relative min-h-screen flex items-center px-4 sm:px-8 md:px-16 overflow-hidden">
             {pieces.filter(p => !removedPetals[p.id]).map((p, i) => renderPiece(p, i))}
             {flowers.map(f => renderFlower(f))}
-            <div className="relative z-10 max-w-xl pt-16 sm:pt-20">
+            <div className="relative z-50 max-w-xl pt-16 sm:pt-20">
               <p className="text-stone-400 text-xs sm:text-sm mb-3 sm:mb-4">Hi, I'm Juju</p>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-stone-800 leading-tight tracking-tight mb-4 sm:mb-6">Product Designer<br /><span className="text-stone-400">you can count on</span></h1>
               <p className="text-stone-500 text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 max-w-md">I blend design thinking with technical fluency to ship products users love. Currently designing at Magnuson Ventures.</p>
